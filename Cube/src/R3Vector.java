@@ -72,6 +72,8 @@ public class R3Vector {
 
     //-------------------------------------------------------------------------------------
     public R3Vector VRound(R3Vector a,R3Vector O, double U){
+
+
         double M1=(1-cos(U))*O.x*O.x+cos(U);    double M2=(1-cos(U))*O.x*O.y-sin(U)*O.z;double M3=(1-cos(U))*O.x*O.z+sin(U)*O.y;
         double M4=(1-cos(U))*O.y*O.x+sin(U)*O.z;double M5=(1-cos(U))*O.y*O.y+cos(U);    double M6=(1-cos(U))*O.y*O.z-sin(U)*O.x;
         double M7=(1-cos(U))*O.z*O.x-sin(U)*O.y;double M8=(1-cos(U))*O.z*O.y+sin(U)*O.x;double M9=(1-cos(U))*O.z*O.z+cos(U);
@@ -80,9 +82,18 @@ public class R3Vector {
         double C2=M4*a.x + M5*a.y + M6*a.z;
         double C3=M7*a.x + M8*a.y + M9*a.z;
 
-        return new R3Vector(C1,C2,C3);
+        if (O.x==1){
+            return new R3Vector(C1,C3,C2);
+        }
+        else if (O.y==1){
+            return new R3Vector(C1,C2,C3);
+        }
+        else{
+            return new R3Vector(C2,C1,C3);
+        }
     }//вращение вектора а вокруг единичного вектора O на угол U от вводимого
     public R3Vector VRound(R3Vector O, double U){
+        //R3Vector t= new R3Vector();
         double M1=(1-cos(U))*O.x*O.x+cos(U);    double M2=(1-cos(U))*O.x*O.y-sin(U)*O.z;double M3=(1-cos(U))*O.x*O.z+sin(U)*O.y;
         double M4=(1-cos(U))*O.y*O.x+sin(U)*O.z;double M5=(1-cos(U))*O.y*O.y+cos(U);    double M6=(1-cos(U))*O.y*O.z-sin(U)*O.x;
         double M7=(1-cos(U))*O.z*O.x-sin(U)*O.y;double M8=(1-cos(U))*O.z*O.y+sin(U)*O.x;double M9=(1-cos(U))*O.z*O.z+cos(U);
@@ -91,7 +102,15 @@ public class R3Vector {
         double C2=M4*x + M5*y + M6*z;
         double C3=M7*x + M8*y + M9*z;
 
-        return new R3Vector(C1,C2,C3);
+        if (O.x==1){
+            return new R3Vector(C1,C3,C2);
+        }
+        else if (O.y==1){
+            return new R3Vector(C1,C2,C3);
+        }
+        else{
+            return new R3Vector(C2,C1,C3);
+        }
     }//вращение вектора а вокруг единичного вектора O на угол U от вектора
     //------------------------------------------------------------------------------------- метод от вводимого
     public R3Vector VRoundX(R3Vector a, double U){
